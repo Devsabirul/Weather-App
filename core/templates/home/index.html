@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="container">
+            <form class="search-container" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter a city name" id="city" name="city" />
+                <button id="search-btn" type="submit">Search</button>
+            </form>
+            <div id="result">
+                <div class="content">
+                    <div class="city">
+                        <p>Weather Today in {{data.city}}, {{data.country}} </p>
+                    </div>
+
+                    <div class="tempareture_info">
+                        <div class="left">
+                            <h1>{{data.temp}}&#176;</h1>
+                            <p>{{data.weather}}</p>
+                            <p>{{data.description}}</p>
+                            <p>Temp Min {{data.temp_min}}° • Temp Max {{data.temp_max}}°</p>
+                        </div>
+                        <div class="right">
+                            <img src="https://openweathermap.org/img/w/{{data.icon}}.png">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="more_temp_details">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:85% ;">Feels Like</td>
+                                <td>{{data.feels_like}}&#176;</td>
+                            </tr>
+                            <tr>
+                                <td style="width:85% ;">Humidity</td>
+                                <td>{{data.humidity}}%</td>
+                            </tr>
+                            <tr>
+                                <td style="width:85% ;">Pressure</td>
+                                <td>{{data.pressure}}hPa</td>
+                            </tr>
+                            <tr>
+                                <td style="width:85% ;">Visibility</td>
+                                <td>{{data.visibility}}km</td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Script -->
+</body>
+
+</html>
